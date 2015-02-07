@@ -1,3 +1,8 @@
+// TODO: Media Queries, Error Handling, set default display properties of instructions
+// to display: none and modify javascript to change display properties.
+// Remove html from ViewModel and write a createContent() function that returns
+// the infowindo content.  Increase size of list on mobile devices.
+
 var map, geoCoder;
 var person = false;
 
