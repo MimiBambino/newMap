@@ -694,7 +694,6 @@ aside {
     #inputInstruction {
     left: calc(45% - 200px);
   }
-  /* Infobox is too wide at 1100px */
 
   input {
     font-size: 20px;
@@ -704,12 +703,76 @@ aside {
     top: 0;
   }
 
-  #location-search {
-    width: 170px;
+  #toggleDinosInstruction {
+    bottom: calc(100% / 4 + 220px);
+    font-size: 24px;
+    max-width: 200px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 815px) {
+  input {
+    left: 45%;
+  }
+
+  #inputInstruction {
+    left: calc(45% - 250px);
+  }
+
+  #icons {
+    display: none;
   }
 
   #toggleDinosInstruction {
-    bottom: calc(100% / 4 + 250px);
+    bottom: calc(100% / 4 + 200px);
+    font-size: 24px;
+    max-width: 200px;
+    line-height: 1.2;
+  }
+
+  .gm-style .gm-style-iw {
+     font-size: 1.4em;
+     max-width: 315px;
+  }
+
+  aside {
+    top: 20%;
+  }
+
+  #selectFavoriteDino {
+    top: 10%;
+  }
+}
+
+@media (max-width: 700px) {
+
+  #inputInstruction {
+    z-index: 0;
+  }
+
+  .gm-style .gm-style-iw {
+     font-size: 1.4em;
+     max-width: 280px;
+  }
+
+  #selectFavoriteDino {
+    z-index: 0;
+  }
+
+  aside {
+    top: 10%;
+  }
+}
+
+@media (max-width: 0px) {
+    .gm-style .gm-style-iw {
+     font-size: 1.4em;
+     max-width: 280px;
+  }
+
+  #toggleDinosInstruction {
+    bottom: calc(100% / 4 + 200px);
     font-size: 24px;
     max-width: 200px;
     line-height: 1.2;
@@ -738,7 +801,6 @@ aside {
   /* Side Bar */
 
   aside {
-
     top: 8%;
     right: 0;
   }
@@ -746,91 +808,13 @@ aside {
   /* list */
   #list {
     width: 215px;
-    top: 9%;
+    top: 15%;
     right: 0;
   }
 
   #list li {
     font-size: 1.2em;
   }
-}
-
-@media (max-width: 900px) {
-    #icons {
-    left: 10%;
-  }
-
-    #inputInstruction {
-    left: calc(45% - 200px);
-  }
-  /* Infobox is too wide at 1100px */
-
-  input {
-    font-size: 20px;
-    height: 50px;
-    width: 200px;
-    left: 50%;
-    top: 0;
-  }
-
-  #location-search {
-    width: 170px;
-  }
-
-  #toggleDinosInstruction {
-    bottom: calc(100% / 4 + 250px);
-    font-size: 24px;
-    max-width: 200px;
-    line-height: 1.2;
-  }
-
-  #selectFavoriteDino {
-    right: 0.5%;
-    top: 2%;
-    font-size: 24px;
-    max-width: 200px;
-  }
-
-  #legend {
-    padding: 1%;
-    margin: 1.5%;
-    width: 160px;
-    left: 0.5%;
-    bottom: calc(100% / 4 - 200px);
-
-  }
-
-  .infoWindow {
-    font-size: 1.4em;
-  }
-
-  /* Side Bar */
-
-  aside {
-
-    top: 8%;
-    right: 0;
-  }
-
-  /* list */
-  #list {
-    width: 215px;
-    top: 9%;
-    right: 0;
-  }
-
-  #list li {
-    font-size: 1.2em;
-  }
-
-}
-
-@media (max-width: 0px) {
-
-}
-
-@media (max-width: 0px) {
-
 }
 
 @media (max-width: 0px) {
