@@ -490,12 +490,13 @@ html {
           box-sizing: border-box;
 }
 
-a {
+#icons a {
   text-decoration: none;
+  color: white;
 }
 
-a:visited {
-  color: #666;
+#icons a:visited {
+  color: white;
 }
 
 html, body, #page {
@@ -506,11 +507,11 @@ html, body, #page {
 }
 
 #icons {
-  right: 4%;
+  left: 6%;
   top: 2.5%;
-  color: #666;
   font-size: 30px;
   position: fixed;
+  z-index: 1100;
 }
 
 .icon-github, .icon-linkedin {
@@ -570,11 +571,11 @@ input:focus {
 }
 
 #toggleDinosInstruction {
-  position: absolute;
+  position: fixed;
   left: 2.5%;
   bottom: calc(100% / 4 + 250px);
-  color: #ddd;
-  font-size: 20px;
+  color: #fff;
+  font-size: 24px;
   max-width: 200px;
   line-height: 1.2;
   z-index: 1100;
@@ -584,7 +585,7 @@ input:focus {
   position: fixed;
   right: 0.5%;
   top: 2%;
-  color: #ddd;
+  color: #fff;
   font-size: 24px;
   max-width: 200px;
   line-height: 1.2;
@@ -612,12 +613,12 @@ input:focus {
   float: right;
 }
 
-.infoWindow {
-  font-size: 1.2e;
+.gm-style .gm-style-iw  {
+  font-size: 1.2em;
 }
 
 p {
-  font-size: 16px;
+  font-size: 1.2em;
 }
 
 ul {
@@ -649,7 +650,7 @@ aside {
   padding: 0;
   background: rgba(0,0,0,0.5);
   color: #ddd;
-  width: 250px;
+  width: 215px;
   top: 9%;
   right: 0;
   border-radius: 5px;
@@ -668,140 +669,178 @@ aside {
   background: blue;
 }
 
-/*@media (max-width: 1700px) {
-  #toggleDinosInstruction {
-    left: 3%;
-  }
-
-  #selectFavoriteDino {
-    top: 1%;
-  }
-
-  #cityInput {
-  font-size: 16px;
-  left: 34%;
-  }
-
-  aside {
-    width: 185px;
-  }
-
-  #container {
-    width: 84%;
-    margin-right: 1%;
-    margin-left: 15%;
-    height: 90%;
-    margin-top: 5%;
-  }
-}
-
-@media (max-width: 1550px){
-
-  #inputInstruction {
-    left: 16%;
-    top: 4%;
-  }
-
-  #container {
-  height: 88%;
-  margin-top: 6%;
-}
-
-  #cityInput {
-    top: 2.5%;
-  }
-}
-
-@media (max-width: 1450px){
-  #toggleDinosInstruction {
-    left: 1%;
-  }
-
-  #container {
-    width: 84%;
-    margin-left: 15%;
-    margin-right: 1%;
-  }
-}
-
 @media (max-width: 1300px) {
-  #container {
-    height: 88%;
-    margin-top: 7%;
-    width: 82%;
-    margin-left: 17%;
+  #icons {
+    left: 8%;
   }
-  #cityInput {
-    left: 40%;
-  }
-  #inputInstruction, #selectFavoriteDino, #toggleDinosInstruction {
-    font-size: 20px;
-  }
+}
 
+@media (max-width: 1100px){
   #inputInstruction {
-    left: 20%;
+    left: calc(45% - 200px);
+  }
+  /* Infobox is too wide at 1100px */
+  .gm-style .gm-style-iw {
+     font-size: 1.3em;
+     max-width: 350px;
+  }
+}
+
+@media (max-width: 1000px){
+    #icons {
+    left: 10%;
   }
 
-  #selectFavoriteDino {
-    top: 3%;
+    #inputInstruction {
+    left: calc(45% - 200px);
+  }
+  /* Infobox is too wide at 1100px */
+
+  input {
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+    left: 50%;
+    top: 0;
+  }
+
+  #location-search {
+    width: 170px;
   }
 
   #toggleDinosInstruction {
-    max-width: 180px;
+    bottom: calc(100% / 4 + 250px);
+    font-size: 24px;
+    max-width: 200px;
+    line-height: 1.2;
+  }
+
+  #selectFavoriteDino {
+    right: 0.5%;
+    top: 2%;
+    font-size: 24px;
+    max-width: 200px;
   }
 
   #legend {
-    bottom: 3%;
+    padding: 1%;
+    margin: 1.5%;
+    width: 160px;
+    left: 0.5%;
+    bottom: calc(100% / 4 - 200px);
+
+  }
+
+  .infoWindow {
+    font-size: 1.4em;
+  }
+
+  /* Side Bar */
+
+  aside {
+
+    top: 8%;
+    right: 0;
+  }
+
+  /* list */
+  #list {
+    width: 215px;
+    top: 9%;
+    right: 0;
+  }
+
+  #list li {
+    font-size: 1.2em;
   }
 }
 
-@media (max-width: 1100px) {
-  #container {
-    width: 95%;
-    height: 90%;
-    margin-left: 170px;
-    margin-top: 10%;
-    position: absolute;
-    margin-bottom: none;
+@media (max-width: 900px) {
+    #icons {
+    left: 10%;
   }
-}
 
-@media (max-width: 1000px) {
-  #cityInput {
+    #inputInstruction {
+    left: calc(45% - 200px);
+  }
+  /* Infobox is too wide at 1100px */
+
+  input {
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
     left: 50%;
+    top: 0;
   }
 
-  #inputInstruction {
-    left: 25%;
+  #location-search {
+    width: 170px;
   }
+
+  #toggleDinosInstruction {
+    bottom: calc(100% / 4 + 250px);
+    font-size: 24px;
+    max-width: 200px;
+    line-height: 1.2;
+  }
+
+  #selectFavoriteDino {
+    right: 0.5%;
+    top: 2%;
+    font-size: 24px;
+    max-width: 200px;
+  }
+
+  #legend {
+    padding: 1%;
+    margin: 1.5%;
+    width: 160px;
+    left: 0.5%;
+    bottom: calc(100% / 4 - 200px);
+
+  }
+
+  .infoWindow {
+    font-size: 1.4em;
+  }
+
+  /* Side Bar */
+
+  aside {
+
+    top: 8%;
+    right: 0;
+  }
+
+  /* list */
+  #list {
+    width: 215px;
+    top: 9%;
+    right: 0;
+  }
+
+  #list li {
+    font-size: 1.2em;
+  }
+
 }
 
-@media (max-width: 790px) {
-  #container {
-    margin-top: 15%;
-  }
-  #cityInput {
-    left: 60%;
-  }
+@media (max-width: 0px) {
 
-   #inputInstruction {
-    left: 30%;
-  }
-
-  #icons {
-    display: none;
-  }
 }
 
-@media (max-width: 650px) {
-  #cityInput {
-    left: 66%;
-    width: 180px;
-  }
+@media (max-width: 0px) {
 
-  #container {
-
-  }
 }
 
-@media (max-width: 360px) {}*/
+@media (max-width: 0px) {
+
+
+}
+
+@media (max-width: 0px) {
+
+
+}
+
+@media (max-width: 0px) {}
