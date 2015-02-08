@@ -150,8 +150,17 @@ var ViewModel = function() {
     self.filterDinoInstruction = ko.observable(false);
     self.dinoListInstruction = ko.observable(false);
     self.showLegend = ko.observable(false);
-    self.listVisible = ko.observable(true);
+    self.listVisible = ko.observable(false);
+    self.listClicked = ko.observable(false);
+    self.buttonVisible = ko.observable(false);
     self.search = false;
+    self.buttonText = ko.computed(function() {
+        if (self.listVisible()) {
+            return "Hide List";
+        } else {
+            return "Show List";
+        }
+    });
 
     // Keeps track of any open infowindows.
     self.activeInfowindow = ko.observable();
@@ -388,6 +397,7 @@ var ViewModel = function() {
     self.toggleDinos = function() {
         self.filterDinoInstruction(false);
         self.dinoListInstruction(true);
+        self.listVisible(true);
         if (self.activeInfowindow()){
             self.activeInfowindow().close();
         }
@@ -444,6 +454,8 @@ var ViewModel = function() {
         self.hide(self.omnivoreMarkers());
         self.hide(self.carnivoreMarkers());
         self.hide(self.herbivoreMarkers());
+        self.dinoListInstruction(false);
+        self.buttonVisible(true);
         var name = arguments[0].name;
         var dinos = self.dinoList();
         var length = dinos.length;
@@ -458,6 +470,14 @@ var ViewModel = function() {
             }
         }
     };
+
+    self.toggleList = function() {
+        if (self.listVisible()) {
+            self.listVisible(false);
+        } else {
+            self.listVisible(true);
+        }
+    }
 
     self.init();
 };

@@ -556,7 +556,7 @@ input {
   text-align: center;
   left: 45%;
   top: 0;
-  border-radius: 20px;
+  border-radius: 10px;
   z-index: 1100;
   color: rgba(0,0,255,0.7);
 }
@@ -590,6 +590,19 @@ input:focus {
   max-width: 200px;
   line-height: 1.2;
   z-index: 1100;
+}
+
+button {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 65px;
+  width: 215px;
+  background-color: white;
+  color: rgba(0,0,255,0.7);
+  z-index: 1100;
+  border-radius: 5px;
+  font-size: 1.4em;
 }
 
 #legend {
