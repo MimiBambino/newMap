@@ -511,7 +511,7 @@ html, body, #page {
   top: 2.5%;
   font-size: 30px;
   position: fixed;
-  z-index: 1100;
+  z-index: 100;
 }
 
 .icon-github, .icon-linkedin {
@@ -543,7 +543,7 @@ html, body, #page {
   position: fixed;
   left: calc(100% /2 - 350px);
   top: 1.5%;
-  z-index: 1100;
+  z-index: 100;
 }
 
 input {
@@ -557,7 +557,7 @@ input {
   left: 45%;
   top: 0;
   border-radius: 10px;
-  z-index: 1100;
+  z-index: 100;
   color: rgba(0,0,255,0.7);
 }
 input:focus {
@@ -578,7 +578,7 @@ input:focus {
   font-size: 24px;
   max-width: 200px;
   line-height: 1.2;
-  z-index: 1100;
+  z-index: 100;
 }
 
 #selectFavoriteDino {
@@ -589,7 +589,7 @@ input:focus {
   font-size: 24px;
   max-width: 200px;
   line-height: 1.2;
-  z-index: 1100;
+  z-index: 100;
 }
 
 button {
@@ -600,7 +600,7 @@ button {
   width: 215px;
   background-color: white;
   color: rgba(0,0,255,0.7);
-  z-index: 1100;
+  z-index: 100;
   border-radius: 5px;
   font-size: 1.4em;
 }
@@ -615,7 +615,7 @@ button {
   position: fixed;
   left: 0.5%;
   bottom: calc(100% / 4 - 200px);
-  z-index: 1001;
+  z-index: 100;
   box-shadow: 2px 2px 2px #555;
 }
 #legend_title {
@@ -647,7 +647,7 @@ ul {
   overflow: auto;
 }
 
-/* Side Bar */
+/* List */
 
 aside {
   position: fixed;
@@ -658,7 +658,6 @@ aside {
   border-radius: 5px;
 }
 
-/* list */
 #list {
   padding: 0;
   background: rgba(0,0,0,0.5);
@@ -690,7 +689,7 @@ aside {
 
 @media (max-width: 1100px){
   #inputInstruction {
-    left: calc(45% - 200px);
+    left: calc(40% - 200px);
   }
   /* Infobox is too wide at 1100px */
   .gm-style .gm-style-iw {
@@ -734,14 +733,11 @@ aside {
   }
 
   #icons {
-    display: none;
+    visibility: hidden;
   }
 
   #toggleDinosInstruction {
-    bottom: calc(100% / 4 + 200px);
-    font-size: 24px;
-    max-width: 200px;
-    line-height: 1.2;
+    z-index: 0;
   }
 
   .gm-style .gm-style-iw {
@@ -778,14 +774,27 @@ aside {
   }
 }
 
-@media (max-width: 0px) {
-    .gm-style .gm-style-iw {
+@media (max-width: 370px) {
+  #mapDiv {
+    top: -5;
+  }
+}
+
+@media (max-height: 600px) {
+
+  #legend {
+    width: 160px;
+    left: 0;
+    bottom: 0;
+  }
+  .gm-style .gm-style-iw {
      font-size: 1.4em;
      max-width: 280px;
   }
 
   #toggleDinosInstruction {
-    bottom: calc(100% / 4 + 200px);
+    top: 20%;
+    left: 5%;
     font-size: 24px;
     max-width: 200px;
     line-height: 1.2;
@@ -796,15 +805,6 @@ aside {
     top: 2%;
     font-size: 24px;
     max-width: 200px;
-  }
-
-  #legend {
-    padding: 1%;
-    margin: 1.5%;
-    width: 160px;
-    left: 0.5%;
-    bottom: calc(100% / 4 - 200px);
-
   }
 
   .infoWindow {
@@ -826,7 +826,7 @@ aside {
   }
 
   #list li {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 }
 

@@ -1,11 +1,10 @@
 // TODO:
 // Media Queries from max-width below 700, all heights
-// toggle list view
+// Fix bug where individual dinosaur marker is not cleared in toggleDinos function
 // Error Handling
 // set default display properties of instructions to display: none and modify javascript to change display properties.
 // Remove html from ViewModel and write a createContent() function that returns the infowindo content.
 // Increase size of list on mobile devices.
-// Figure out how to style infoboxes better
 
 var map, geoCoder;
 var person = false;
