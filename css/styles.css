@@ -530,6 +530,13 @@ html, body, #page {
   height: 100%;
 }
 
+.noMap {
+  height:800px;
+  width: 1200px;
+  background-image: url("../img/MapNotAvailable.png");
+  z-index:1000;
+}
+
 #mapDiv {
   position: absolute;
   width: 100%;
@@ -597,7 +604,7 @@ button {
   right: 0;
   top: 0;
   height: 65px;
-  width: 215px;
+  width: 200px;
   background-color: white;
   color: rgba(0,0,255,0.7);
   z-index: 100;
@@ -627,7 +634,8 @@ button {
 }
 
 .gm-style .gm-style-iw  {
-  font-size: 1.2em;
+  font-size: 1.4em;
+  width: 300px;
 }
 
 p {
@@ -653,7 +661,7 @@ aside {
   position: fixed;
   height: 100%;
   overflow: auto;
-  top: 8%;
+  top: 50px;
   right: 0;
   border-radius: 5px;
 }
@@ -662,7 +670,7 @@ aside {
   padding: 0;
   background: rgba(0,0,0,0.5);
   color: #ddd;
-  width: 215px;
+  width: 200px;
   top: 9%;
   right: 0;
   border-radius: 5px;
@@ -693,25 +701,26 @@ aside {
   }
   /* Infobox is too wide at 1100px */
   .gm-style .gm-style-iw {
-     font-size: 1.3em;
+     font-size: 1.4em;
      max-width: 350px;
   }
 }
 
 @media (max-width: 1000px){
     #icons {
-    left: 10%;
+    visibility: hidden;
   }
 
     #inputInstruction {
     left: calc(45% - 200px);
+    visibility: hidden;
   }
 
   input {
     font-size: 20px;
     height: 50px;
-    width: 200px;
-    left: 50%;
+    width: 150px;
+    left: 20%;
     top: 0;
   }
 
@@ -724,29 +733,13 @@ aside {
 }
 
 @media (max-width: 815px) {
-  input {
-    left: 45%;
-  }
 
   #inputInstruction {
     left: calc(45% - 250px);
   }
 
-  #icons {
-    visibility: hidden;
-  }
-
   #toggleDinosInstruction {
     z-index: 0;
-  }
-
-  .gm-style .gm-style-iw {
-     font-size: 1.4em;
-     max-width: 315px;
-  }
-
-  aside {
-    top: 20%;
   }
 
   #selectFavoriteDino {
@@ -761,22 +754,34 @@ aside {
   }
 
   .gm-style .gm-style-iw {
-     font-size: 1.4em;
      max-width: 280px;
   }
 
   #selectFavoriteDino {
     z-index: 0;
   }
+}
 
-  aside {
-    top: 10%;
+@media (max-width: 550px) {
+
+  input {
+  width: 150px;
   }
 }
 
 @media (max-width: 370px) {
-  #mapDiv {
-    top: -5;
+  button {
+    width: 100px;
+  }
+  input {
+    width: 75px;
+  }
+}
+
+@media (max-height: 700px) {
+  #legend {
+    left: 0;
+    padding-top: 0;
   }
 }
 
@@ -784,60 +789,8 @@ aside {
 
   #legend {
     width: 160px;
-    left: 0;
-    bottom: 0;
   }
   .gm-style .gm-style-iw {
-     font-size: 1.4em;
      max-width: 280px;
   }
-
-  #toggleDinosInstruction {
-    top: 20%;
-    left: 5%;
-    font-size: 24px;
-    max-width: 200px;
-    line-height: 1.2;
-  }
-
-  #selectFavoriteDino {
-    right: 0.5%;
-    top: 2%;
-    font-size: 24px;
-    max-width: 200px;
-  }
-
-  .infoWindow {
-    font-size: 1.4em;
-  }
-
-  /* Side Bar */
-
-  aside {
-    top: 8%;
-    right: 0;
-  }
-
-  /* list */
-  #list {
-    width: 215px;
-    top: 15%;
-    right: 0;
-  }
-
-  #list li {
-    font-size: 1.4em;
-  }
 }
-
-@media (max-width: 0px) {
-
-
-}
-
-@media (max-width: 0px) {
-
-
-}
-
-@media (max-width: 0px) {}

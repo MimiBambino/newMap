@@ -1,15 +1,82 @@
-// TODO:
-// Media Queries from max-width below 700, all heights
-// Fix bug where individual dinosaur marker is not cleared in toggleDinos function
-// Error Handling
-// set default display properties of instructions to display: none and modify javascript to change display properties.
-// Remove html from ViewModel and write a createContent() function that returns the infowindo content.
-// Increase size of list on mobile devices.
-
 var map, geoCoder;
 var person = false;
 
 var View = {
+// Create content for infoboxes
+    createContent: function(infowindow, response) {
+        var keys = Object.keys(response.query.pages);
+        var key = parseInt(keys[0], 10);
+        var paragraph = response.query.pages[key].extract.substring(0,3000);
+        var reFirst = /\<b/;
+        var reEndFirst = /\/b/;
+        var result = reFirst.exec(paragraph);
+        // store the index of the opening <b> tag
+        var beginName = result.index;
+        result = reEndFirst.exec(paragraph);
+        var endName = result.index + 3;
+        var name = paragraph.substring(beginName, endName);
+        // find index of first word of decription
+        var reDescription = /is |was |which/;
+        result = reDescription.exec(paragraph);
+        var beginDescription = result.index;
+        var description = paragraph.substring(beginDescription, beginDescription + 250);
+        paragraph = name + " " + description;
+        console.log(paragraph);
+        // console.log(name);
+        // if (infowindow.title === "Cryolophosaurus") {
+        //     var res = response.query.pages[key].extract.substring(0, 2500);
+        //     paragraph = res.substring(0, 32);
+        //     var p2 = res.substring(2069, 2350);
+        //     paragraph += p2;
+        // } else if (infowindow.title === "Compsognathus") {
+        //     var res = response.query.pages[key].extract.substring(0, 2500);
+        //     paragraph = res.substring(0, 31);
+        //     var p2 = res.substring(990, 1500);
+        //     paragraph += p2;
+        //     // paragraph = dinoData[25].description;
+        // } else if (infowindow.title === "Dilophosaurus") {
+        //     var res = response.query.pages[key].extract.substring(0, 2500);
+        //     paragraph = res.substring(0, 31);
+        //     var p2 = res.substring(1900, 2000);
+        //     paragraph += p2;
+        //     // paragraph = dinoData[32].description;
+        // } else if (infowindow.title === "Dilong") {
+        //     var res = response.query.pages[key].extract.substring(0, 3500);
+        //     paragraph = res.substring(0, 16);
+        //     var p2 = res.substring(359, 700);
+        //     paragraph += p2;
+        //     // paragraph = dinoData[31].description;
+        // } else if (infowindow.title === "Archaeopteryx") {
+        //     var res = response.query.pages[key].extract.substring(0, 2500);
+        //     paragraph = res.substring(0, 29);
+        //     var p2 = res.substring(1035, 1500);
+        //     paragraph += p2;
+        //     // paragraph = dinoData[21].description;
+        // } else if (infowindow.title === "Antarctopelta") {
+        //     var res = response.query.pages[key].extract.substring(0, 2500);
+        //     paragraph = res.substring(0, 31);
+        //     var p2 = res.substring(1169, 1500);
+        //     paragraph += p2;
+        //     // paragraph = dinoData[53].description;
+        // } else if (infowindow.title === "Diplodocus") {
+        //     var res = response.query.pages[key].extract.substring(0, 2500);
+        //     paragraph = res.substring(0, 27);
+        //     var p2 = res.substring(2363, 2700);
+        //     paragraph += p2;
+        //     // paragraph = dinoData[4].description;
+        // }
+        var content = "<div class='infoWindow'><h3>Hi, my name is <strong>" +
+                    infowindow.title + "</strong>!</h3></div><div>" +
+                    paragraph + "...</p></div><div>For more see: <a href='http://www.wikipedia.org/wiki/"+
+                    infowindow.title + "' target='_blank'>Wikipedia</a></div>";
+        return content;
+    },
+    errorContent: function(infowindow) {
+        var content = "<div class='infoWindow'><h3>Hi, my name is <strong>" +
+                    infowindow.title + "</strong>!</h3></div><div>" +
+                    "Wikipedia could not be reached</div>";
+        return content;
+    },
 // Custom Map Styles
     bluishMapStyle: [
         {
@@ -141,7 +208,7 @@ var ViewModel = function() {
 
     // Saves a reference to ViewModel object
     var self = this;
-
+    self.mapError = ko.observable(false);
     self.startLoc = new google.maps.LatLng(33.5, 7.6);
 
     // Keeps track of which instructions have been flashed to the user.
@@ -191,7 +258,10 @@ var ViewModel = function() {
         // Getting map DOM element
         var mapElement = document.getElementById('mapDiv');
         map = new google.maps.Map(mapElement, mapOptions);
-
+        // Show a placeholder image if map.status is not OK
+        if (map.status != status.OK) {
+            self.mapError(true);
+        }
         //relate new mapTypeId to the styledMapType object
         map.mapTypes.set('new_bluish_style', bluishStyledMap);
         //set this new mapTypeId to be displayed
@@ -206,13 +276,21 @@ var ViewModel = function() {
      * Retrieves data from Firebase and initializes call to create the dinoList
      */
     self.fetchFirebase = function(){
-        var FB = new Firebase("https://intense-inferno-1224.firebaseio.com/");
-        FB.on('value', function(data) {
-            self.firebaseData = data.val();
-            var dinos = self.firebaseData.dinos;
-            self.setDinoList(dinos);
-            });
-    };
+        try {
+            var FB = new Firebase("https://intense-inferno-1224.firebaseio.com/");
+            FB.on('value', function(data) {
+                self.firebaseData = data.val();
+                // console.log(self.firebaseData);
+                var dinos = self.firebaseData.dinos;
+                self.setDinoList(dinos);
+                });
+            }
+        catch(e) {
+             // Handle errors with backup copy of data if Firebase is unreachable
+            self.setDinoList(dinoData);
+        }
+
+    }
 
     // This is the main source of data for the application.
     self.dinoList = ko.observableArray();
@@ -317,27 +395,23 @@ var ViewModel = function() {
         }
         url += name;
         $.ajax( {
-            url: url,
-            xhrFields: {
-                withCredentials: true
-            },
-            dataType:'jsonp',
-            success: function(response){
-                // Parses the response and sets infobox content
-                var keys = Object.keys(response.query.pages);
-                var key = parseInt(keys[0], 10);
-                var paragraph = response.query.pages[key].extract.substring(0,300);
-                // Add list of continents where dinosaur lived
-                infowindow.setContent("<div class='infoWindow'><h3>Hi, my name is <strong>" +
-                    infowindow.title + "</strong>!</h3></div><div>" +
-                    paragraph + "...</p></div><div>For more see: <a href='http://www.wikipedia.org/wiki/"+
-                    name + "' target='_blank'>Wikipedia</a></div>");
-            },
-            type:'GET',
-            headers: {
-                'Api-User-Agent': "Cynthia O\'Donnell: mimibambino@gmail.com",
-                'Access-Control-Allow-Origin': true
-             }
+        url: url,
+        xhrFields: {
+            withCredentials: true
+        },
+        dataType:'jsonp',
+        success: function(response) {
+            // Parses the response and sets infobox content
+            infowindow.setContent(View.createContent(infowindow, response));
+        },
+        error: function(response) {
+            infowindow.setContent(View.errorContent(infowindow));
+        },
+        type:'GET',
+        headers: {
+            'Api-User-Agent': "Cynthia O\'Donnell: mimibambino@gmail.com",
+            'Access-Control-Allow-Origin': true
+            }
         });
     };
 
@@ -382,7 +456,7 @@ var ViewModel = function() {
             person = true;
             return loc;
             }
-            else {
+            else if (status != google.maps.places.PlacesServiceStatus.OK) {
         // If no location found based on search
             return self.startLoc;
             }

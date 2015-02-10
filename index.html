@@ -13,13 +13,8 @@
     <body>
       <div id='page'>
         <div id="header">
-
-
           <div id='selectFavoriteDino' data-bind="fadeVisible: dinoListInstruction">Select a dinosaur from the list.<span class="icon-arrow-down2"></span></div>
           <button data-bind="fadeVisible: buttonVisible, click: toggleList, text: buttonText">Hide List</button>
-
-
-
           <div id='inputInstruction' data-bind="fadeVisible: locationInstruction">Enter your location <span class="icon-arrow-right2"></span></div>
           <div id="location-search">
             <input id='cityInput' data-bind="value: location" placeholder="Location">
@@ -28,6 +23,7 @@
             <a class="icon-github" href="https://github.com/MimiBambino/DinosaurMap" target="_blank"></a>
             <a class="icon-linkedin" href="https://www.linkedin.com/in/cynthiafussellodonnell" target="_blank"></a>
           </div>
+          <div data-bind="css: mapError"></div>
         </div>
         <div id="toggleDinosInstruction" data-bind="fadeVisible: filterDinoInstruction">Click a legend image to filter by dinosaur type. <span class="icon-arrow-down2"></span></div>
         <div id='container'>
