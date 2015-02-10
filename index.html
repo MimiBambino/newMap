@@ -14,7 +14,7 @@
       <div id='page'>
         <div id="header">
           <div id='selectFavoriteDino' data-bind="fadeVisible: dinoListInstruction">Select a dinosaur from the list.<span class="icon-arrow-down2"></span></div>
-          <button data-bind="fadeVisible: buttonVisible, click: toggleList, text: buttonText">Hide List</button>
+          <button class='hide-list' data-bind="fadeVisible: buttonVisible, click: toggleList, text: buttonText">Hide List</button>
           <div id='inputInstruction' data-bind="fadeVisible: locationInstruction">Enter your location <span class="icon-arrow-right2"></span></div>
           <div id="location-search">
             <input id='cityInput' data-bind="value: location" placeholder="Location">
@@ -36,6 +36,7 @@
             <img src="img/blueDino41.png" data-bind='click: toggleDinos.bind($data, "omnivore")'><p class='legend_caption'>Omnivore</p><br><hr>
             <img src="img/tRex.png" data-bind='click: toggleDinos.bind($data, "carnivore")'><p class='legend_caption'>Meat Eater</p><br><hr>
             <img src="img/plantEaterSm.png" data-bind='click: toggleDinos.bind($data, "herbivore")'><p class='legend_caption'>Plant Eater</p><br>
+            <button class="hide-legend" data-bind= "fadeVisible: legendClicked, click: removeLegend">Hide Legend</button>
           </div>
         </div>
 

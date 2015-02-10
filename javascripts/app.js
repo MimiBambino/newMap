@@ -21,50 +21,7 @@ var View = {
         var beginDescription = result.index;
         var description = paragraph.substring(beginDescription, beginDescription + 250);
         paragraph = name + " " + description;
-        console.log(paragraph);
-        // console.log(name);
-        // if (infowindow.title === "Cryolophosaurus") {
-        //     var res = response.query.pages[key].extract.substring(0, 2500);
-        //     paragraph = res.substring(0, 32);
-        //     var p2 = res.substring(2069, 2350);
-        //     paragraph += p2;
-        // } else if (infowindow.title === "Compsognathus") {
-        //     var res = response.query.pages[key].extract.substring(0, 2500);
-        //     paragraph = res.substring(0, 31);
-        //     var p2 = res.substring(990, 1500);
-        //     paragraph += p2;
-        //     // paragraph = dinoData[25].description;
-        // } else if (infowindow.title === "Dilophosaurus") {
-        //     var res = response.query.pages[key].extract.substring(0, 2500);
-        //     paragraph = res.substring(0, 31);
-        //     var p2 = res.substring(1900, 2000);
-        //     paragraph += p2;
-        //     // paragraph = dinoData[32].description;
-        // } else if (infowindow.title === "Dilong") {
-        //     var res = response.query.pages[key].extract.substring(0, 3500);
-        //     paragraph = res.substring(0, 16);
-        //     var p2 = res.substring(359, 700);
-        //     paragraph += p2;
-        //     // paragraph = dinoData[31].description;
-        // } else if (infowindow.title === "Archaeopteryx") {
-        //     var res = response.query.pages[key].extract.substring(0, 2500);
-        //     paragraph = res.substring(0, 29);
-        //     var p2 = res.substring(1035, 1500);
-        //     paragraph += p2;
-        //     // paragraph = dinoData[21].description;
-        // } else if (infowindow.title === "Antarctopelta") {
-        //     var res = response.query.pages[key].extract.substring(0, 2500);
-        //     paragraph = res.substring(0, 31);
-        //     var p2 = res.substring(1169, 1500);
-        //     paragraph += p2;
-        //     // paragraph = dinoData[53].description;
-        // } else if (infowindow.title === "Diplodocus") {
-        //     var res = response.query.pages[key].extract.substring(0, 2500);
-        //     paragraph = res.substring(0, 27);
-        //     var p2 = res.substring(2363, 2700);
-        //     paragraph += p2;
-        //     // paragraph = dinoData[4].description;
-        // }
+
         var content = "<div class='infoWindow'><h3>Hi, my name is <strong>" +
                     infowindow.title + "</strong>!</h3></div><div>" +
                     paragraph + "...</p></div><div>For more see: <a href='http://www.wikipedia.org/wiki/"+
@@ -220,6 +177,7 @@ var ViewModel = function() {
     self.listClicked = ko.observable(false);
     self.buttonVisible = ko.observable(false);
     self.search = false;
+    self.legendClicked = ko.observable(false);
     self.buttonText = ko.computed(function() {
         if (self.listVisible()) {
             return "Hide List";
@@ -227,6 +185,10 @@ var ViewModel = function() {
             return "Show List";
         }
     });
+
+    self.removeLegend = function() {
+        self.showLegend(false);
+    };
 
     // Keeps track of any open infowindows.
     self.activeInfowindow = ko.observable();
@@ -471,6 +433,7 @@ var ViewModel = function() {
         self.filterDinoInstruction(false);
         self.dinoListInstruction(true);
         self.listVisible(true);
+        self.legendClicked(true);
         if (self.activeInfowindow()){
             self.activeInfowindow().close();
         }
